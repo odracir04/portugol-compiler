@@ -1,6 +1,6 @@
 # portugol-compiler
 
-> A simple compiler for the Portugol language. Project developed by Ricardo Oliveira.
+> A simple compiler for the Portugol language. Project developed by Ricardo Oliveira and João Oliveira.
 
 ## Compiling Stages
 
@@ -14,3 +14,12 @@
 - Code optimization
 - Final machine code generation
 
+## Instructions to generate the compiler
+
+To generate the compiler simply run the following commands:
+
+```
+flex lexer.lex
+bison -d parser.y
+gcc lex.yy.c parser.tab.c -o compiler
+```
