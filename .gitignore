@@ -1,3 +1,7 @@
 lex.yy.c
 lexer
 .idea/
+parser
+compiler
+parser.y
+parser.tab.*
