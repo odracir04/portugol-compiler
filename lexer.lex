@@ -6,7 +6,7 @@ int syntax_error();
 %%
 "inicio" { printf("INICIO"); return INICIO; }
 "algoritmo" { printf("ALGORITMO"); return ALGORITMO; }
-"var" { return VAR; }
+"var" { printf("VAR"); return VAR; }
 "fimalgoritmo" { printf("FIM"); return FIMALGORITMO; }
 [a-zA-Z][a-zA-Z0-9]+ { printf("nome"); return NAME; }
 
