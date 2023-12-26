@@ -23,4 +23,4 @@ flex lexer.lex
 bison -d parser.y
 gcc lex.yy.c parser.tab.c -o compiler
 ```
-These commands can also be executed by running the build.sh file.
+These commands can also be executed by running the```build.sh``` file.
