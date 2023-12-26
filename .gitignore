@@ -3,5 +3,4 @@ lexer
 .idea/
 parser
 compiler
-parser.y
 parser.tab.*
