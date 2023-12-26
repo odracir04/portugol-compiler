@@ -1,21 +1,22 @@
 %{
+#include "parser.tab.h"
+int syntax_error();
 %}
 
 %%
-ret { printf("return"); }
-. { return 0; }
+"inicio" { printf("INICIO"); return INICIO; }
+"algoritmo" { printf("ALGORITMO"); return ALGORITMO; }
+"var" { return VAR; }
+"fimalgoritmo" { printf("FIM"); return FIMALGORITMO; }
+[a-zA-Z][a-zA-Z0-9]+ { printf("nome"); return NAME; }
+
 %%
 
 int yywrap() {
     exit(1);
 }
 
-int main(int argc, char** argv) {
-    FILE* file = fopen(argv[1], "r");
-
-    if (!file) { printf("FileError: Input file does not exist."); exit(1); }
-
-    yyin = file;
-
-    while(yylex());
+int syntax_error() {
+    printf("SyntaxError: Could not tokenize");
+    exit(1);
 }
