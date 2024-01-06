@@ -1,15 +1,22 @@
+%option nounput yylineno
 %{
 #include "parser.tab.h"
 int syntax_error();
 %}
 
 %%
-"inicio" { printf("INICIO"); return INICIO; }
-"algoritmo" { printf("ALGORITMO"); return ALGORITMO; }
-"var" { printf("VAR"); return VAR; }
-"fimalgoritmo" { printf("FIM"); return FIMALGORITMO; }
-[a-zA-Z][a-zA-Z0-9]+ { printf("nome"); return NAME; }
-
+"inicio" return INICIO;
+"algoritmo" return ALGORITMO;
+"var" return VAR;
+"fimalgoritmo" return FIMALGORITMO;
+"real" return TYPE;
+\n return NEWLINE;
+":" return COLON;
+"." return PERIOD;
+"," return COMMA;
+[a-zA-Z][a-zA-Z0-9]* return STRING_LIT;
+[ \t] ;
+. syntax_error();
 %%
 
 int yywrap() {
