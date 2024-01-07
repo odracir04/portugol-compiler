@@ -7,7 +7,6 @@ int yyparse();
 int yyerror();
 
 extern FILE* yyin;
-extern int yylineno;
 %}
 
 %start start
@@ -21,7 +20,11 @@ extern int yylineno;
 %token COLON
 %token NEWLINE
 %token COMMA
-
+%token ARROW
+%token DOUBLE_QUOTE
+%token BOOL_LIT
+%token DOUBLE_LIT
+%token INT_LIT
 %%
 
 start: HEADER VARIABLES ALGORITHM | HEADER ALGORITHM;
@@ -36,7 +39,11 @@ ALGORITHM: ALGORITHM_START STATEMENT_LIST ALGORITHM_END;
 ALGORITHM_START: INICIO | ALGORITHM_START NEWLINE;
 ALGORITHM_END: FIMALGORITMO | ALGORITHM_END NEWLINE;
 STATEMENT_LIST: STATEMENT | STATEMENT STATEMENT_LIST;
-STATEMENT: STRING_LIT NEWLINE | STATEMENT NEWLINE;
+STATEMENT: ASSIGNMENT NEWLINE | STATEMENT NEWLINE;
+ASSIGNMENT: STRING_LIT ARROW DOUBLE_QUOTE STRING_LIT DOUBLE_QUOTE { printf("ASSIGNED STR\n"); }
+                | STRING_LIT ARROW BOOL_LIT { printf("ASSIGNED BOOL\n"); }
+                | STRING_LIT ARROW INT_LIT { printf("ASSIGNED INT\n"); }
+                | STRING_LIT ARROW DOUBLE_LIT { printf("ASSIGNED DOUBLE\n"); };
 %%
 
 int yyerror() {
@@ -57,6 +64,5 @@ int main(int argc, char** argv) {
     do {
         yyparse();
     } while (!feof(yyin));
-
     exit(0);
 }
