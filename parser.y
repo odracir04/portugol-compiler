@@ -14,7 +14,6 @@ extern FILE* yyin;
 %token FIMALGORITMO
 %token INICIO
 %token STRING_LIT
-%token PERIOD
 %token VAR
 %token TYPE
 %token COLON

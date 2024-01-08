@@ -17,7 +17,6 @@ int syntax_error();
 "caractere" return TYPE;
 \n return NEWLINE;
 ":" return COLON;
-"." return PERIOD;
 "," return COMMA;
 "<-" return ARROW;
 "\"" return DOUBLE_QUOTE;
@@ -28,14 +27,14 @@ int syntax_error();
 "(" return OPEN_CURLY;
 ")" return CLOSE_CURLY;
 [a-zA-Z][a-zA-Z0-9]* return STRING_LIT;
-[0-9]+ return INT_LIT;
 [0-9]+"."[0-9]+ return DOUBLE_LIT;
+[0-9]+ return INT_LIT;
 [ \t] ;
 . syntax_error();
 %%
 
 int yywrap() {
-    exit(1);
+    return 0;
 }
 
 int syntax_error() {
