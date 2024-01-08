@@ -34,7 +34,7 @@ int syntax_error();
 %%
 
 int yywrap() {
-    return 0;
+    exit(1);
 }
 
 int syntax_error() {
