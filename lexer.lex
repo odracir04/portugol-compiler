@@ -1,4 +1,5 @@
 %option nounput yylineno
+%option noinput yylineno
 %{
 #include "parser.tab.h"
 int syntax_error();

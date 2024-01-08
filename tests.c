@@ -23,7 +23,7 @@ void token_tests() {
         PLUS, MINUS, TIMES, DIVIDE, OPEN_CURLY, CLOSE_CURLY, NEWLINE,
         STRING_LIT, INT_LIT, DOUBLE_LIT, NEWLINE};
 
-    printf("BEGINNING TESTS...\n");
+    printf("BEGINNING TOKEN TESTS...\n");
     int retv = yylex(), i = 0;
     while (1) {
         if (retv == res[i]) {
@@ -39,6 +39,8 @@ void token_tests() {
     }
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n", passed, failed);
 }
+
+
 
 int main() {
     token_tests();
