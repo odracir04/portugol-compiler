@@ -8,6 +8,8 @@ extern FILE* yyout;
 extern char* yytext;
 
 void token_tests() {
+    printf("BEGINNING TOKEN TESTS...\n");
+
     FILE* infile = fopen("tests/token_test.portugol", "r");
 
     if (!infile) {
@@ -23,7 +25,6 @@ void token_tests() {
         PLUS, MINUS, TIMES, DIVIDE, OPEN_CURLY, CLOSE_CURLY, NEWLINE,
         STRING_LIT, INT_LIT, DOUBLE_LIT, NEWLINE};
 
-    printf("BEGINNING TOKEN TESTS...\n");
     int retv = yylex(), i = 0;
     while (1) {
         if (retv == res[i]) {
@@ -41,6 +42,8 @@ void token_tests() {
 }
 
 void structure_test() {
+    printf("BEGINNING PARSER STRUCTURE TESTS...\n");
+
     FILE* infile = fopen("tests/structure_test1.portugol", "r");
 
     if (!infile) {
@@ -49,11 +52,24 @@ void structure_test() {
     }
 
     yyin = infile;
-
-    printf("BEGINNING PARSER STRUCTURE TESTS...\n");
     do {
         yyparse();
     } while (!feof(yyin));
+    printf("PASSED TEST 1\n");
+
+    infile = fopen("tests/structure_test2.portugol", "r");
+
+    if (!infile) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    yyin = infile;
+
+    do {
+        yyparse();
+    } while (!feof(yyin));
+    printf("PASSED TEST 2\n");
 }
 
 int main() {

@@ -1,14 +1,4 @@
 algoritmo semnome
-
 inicio
-
-vars <- 5
-
-
-
-
-
-
-
+vars <- 21
 fimalgoritmo
-

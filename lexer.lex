@@ -1,5 +1,6 @@
 %option nounput yylineno
 %option noinput yylineno
+%option noyywrap
 %{
 #include "parser.tab.h"
 int syntax_error();
@@ -33,10 +34,6 @@ int syntax_error();
 [ \t] ;
 . syntax_error();
 %%
-
-int yywrap() {
-    exit(1);
-}
 
 int syntax_error() {
     printf("SyntaxError: Could not tokenize");
