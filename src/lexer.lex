@@ -3,6 +3,7 @@
 %option noyywrap
 %{
 #include "parser.tab.h"
+
 int syntax_error();
 %}
 
