@@ -32,10 +32,10 @@ extern FILE* yyin;
 %token DOUBLE_LIT
 %token INT_LIT
 
-%left PLUS
-%left MINUS
 %left TIMES
 %left DIVIDE
+%left PLUS
+%left MINUS
 %%
 
 start: HEADER VARIABLES ALGORITHM | HEADER ALGORITHM;
