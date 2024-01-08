@@ -37,12 +37,27 @@ void token_tests() {
         if (i >= sizeof(res) / sizeof(int)) break;
         retv = yylex();
     }
-    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n", passed, failed);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
+void structure_test() {
+    FILE* infile = fopen("tests/structure_test1.portugol", "r");
 
+    if (!infile) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    yyin = infile;
+
+    printf("BEGINNING PARSER STRUCTURE TESTS...\n");
+    do {
+        yyparse();
+    } while (!feof(yyin));
+}
 
 int main() {
     token_tests();
+    structure_test();
     exit(EXIT_SUCCESS);
 }

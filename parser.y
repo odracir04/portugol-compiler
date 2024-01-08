@@ -5,8 +5,6 @@
 int yylex();
 int yyparse();
 int yyerror();
-
-extern FILE* yyin;
 %}
 
 %start start
@@ -65,20 +63,4 @@ VARIABLE: INT_LIT | DOUBLE_LIT | STRING_LIT;
 int yyerror() {
     printf("ParseError: Could not parse");
     exit(1);
-}
-
-int main(int argc, char** argv) {
-    FILE* file = fopen(argv[1], "r");
-
-    if (!file) {
-        printf("FileError: Could not find file");
-        exit(1);
-    }
-
-    yyin = file;
-
-    do {
-        yyparse();
-    } while (!feof(yyin));
-    exit(0);
 }
