@@ -25,7 +25,7 @@ void token_tests() {
 
     printf("BEGINNING TESTS...\n");
     int retv = yylex(), i = 0;
-    while (retv != 0) {
+    while (1) {
         if (retv == res[i]) {
             passed++;
         }
@@ -37,7 +37,9 @@ void token_tests() {
         if (i >= sizeof(res) / sizeof(int)) break;
         retv = yylex();
     }
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n", passed, failed);
 }
+
 int main() {
     token_tests();
     exit(EXIT_SUCCESS);
