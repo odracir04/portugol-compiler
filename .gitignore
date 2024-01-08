@@ -4,3 +4,6 @@ lexer
 parser
 compiler
 parser.tab.*
+grammar.txt
+lexer_tests
+test.portugol
