@@ -107,6 +107,46 @@ void structure_test() {
         printf("FAILED TEST 3\n");
     }
 
+    infile = fopen("tests/structure_test4.portugol", "r");
+
+    if (!infile) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    yyin = infile;
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 1) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 4\n");
+    }
+
+    infile = fopen("tests/structure_test5.portugol", "r");
+
+    if (!infile) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    yyin = infile;
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 1) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 5\n");
+    }
+
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
