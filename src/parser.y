@@ -60,7 +60,7 @@ MATH_EXPRESSION: MATH_EXPRESSION PLUS MATH_EXPRESSION
 VARIABLE: INT_LIT | DOUBLE_LIT | STRING_LIT;
 %%
 
+
 int yyerror() {
-    printf("ParseError: Could not parse");
-    exit(1);
+    return 1;
 }

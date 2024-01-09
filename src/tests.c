@@ -42,7 +42,10 @@ void token_tests() {
 }
 
 void structure_test() {
+
     printf("BEGINNING PARSER STRUCTURE TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
 
     FILE* infile = fopen("tests/structure_test1.portugol", "r");
 
@@ -53,9 +56,16 @@ void structure_test() {
 
     yyin = infile;
     do {
-        yyparse();
+        retv = yyparse();
     } while (!feof(yyin));
-    printf("PASSED TEST 1\n");
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
 
     infile = fopen("tests/structure_test2.portugol", "r");
 
@@ -65,11 +75,39 @@ void structure_test() {
     }
 
     yyin = infile;
-
     do {
-        yyparse();
+        retv = yyparse();
     } while (!feof(yyin));
-    printf("PASSED TEST 2\n");
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 2\n");
+    }
+
+    infile = fopen("tests/structure_test3.portugol", "r");
+
+    if (!infile) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    yyin = infile;
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 1) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 3\n");
+    }
+
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
 int main() {
