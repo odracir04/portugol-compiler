@@ -1,0 +1,8 @@
+algoritmo kingcrimson
+
+var red: real
+
+inicio
+red <- 2.1 + (23 + 3.14) / 42 * 1.602
+
+fimalgoritmo

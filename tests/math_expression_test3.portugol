@@ -1,0 +1,7 @@
+algoritmo lorde
+
+inicio
+
+royals <- 14 + 14 + 14 + 14 - 14 - 14 - 14 * 14 * 14 * 14 / 14 / 14 / 15
+
+fimalgoritmo

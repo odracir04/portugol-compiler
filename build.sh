@@ -1,5 +1,5 @@
 #!/bin/sh
 
-flex lexer.lex
-bison -d -Wcounterexamples parser.y
-gcc -Wall lex.yy.c parser.tab.c -o compiler
+flex src/lexer.lex
+bison -d -Wcounterexamples src/parser.y
+gcc -Wall lex.yy.c parser.tab.c src/compiler.c -o compiler
