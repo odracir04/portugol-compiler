@@ -16,5 +16,5 @@
 
 ## Instructions to generate and use the compiler
 
-To generate the compiler simply run ```build.sh``` file.
-The compiler also comes with a test suite to assess its current status. The tests can be run by executing the ```test.sh``` file.
+- To generate the compiler simply run ```build.sh``` file.
+- The compiler also comes with a test suite to assess its current status. The tests can be run by executing the ```test.sh``` file.
