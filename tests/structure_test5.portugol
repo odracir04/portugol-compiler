@@ -1,5 +1,7 @@
-inicio
-
 algoritmo sus
 
+inicio
+
+
+check <- "apples"
 fimalgoritmo

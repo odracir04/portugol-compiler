@@ -10,14 +10,12 @@ extern char* yytext;
 void token_tests() {
     printf("BEGINNING TOKEN TESTS...\n");
 
-    FILE* infile = fopen("tests/token_test.portugol", "r");
+    yyin = fopen("tests/token_test.portugol", "r");
 
-    if (!infile) {
+    if (!yyin) {
         printf("FileError: Could not find input file");
         exit(1);
     }
-
-    yyin = infile;
 
     int passed = 0, failed = 0;
     int res[] = {INICIO, ALGORITMO, VAR, FIMALGORITMO, BOOL_LIT, BOOL_LIT, TYPE, TYPE,
@@ -38,23 +36,24 @@ void token_tests() {
         if (i >= sizeof(res) / sizeof(int)) break;
         retv = yylex();
     }
+
+    fclose(yyin);
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
-void structure_test() {
+void structure_tests() {
 
-    printf("BEGINNING PARSER STRUCTURE TESTS...\n");
+    printf("BEGINNING ALGORITHM STRUCTURE TESTS...\n");
 
     int passed = 0, failed = 0, retv;
 
-    FILE* infile = fopen("tests/structure_test1.portugol", "r");
+    yyin = fopen("tests/structure_test1.portugol", "r");
 
-    if (!infile) {
+    if (!yyin) {
         printf("FileError: Could not find input file");
         exit(1);
     }
 
-    yyin = infile;
     do {
         retv = yyparse();
     } while (!feof(yyin));
@@ -67,14 +66,15 @@ void structure_test() {
         printf("FAILED TEST 1\n");
     }
 
-    infile = fopen("tests/structure_test2.portugol", "r");
+    fclose(yyin);
 
-    if (!infile) {
+    yyin = fopen("tests/structure_test2.portugol", "r");
+
+    if (!yyin) {
         printf("FileError: Could not find input file");
         exit(1);
     }
 
-    yyin = infile;
     do {
         retv = yyparse();
     } while (!feof(yyin));
@@ -87,19 +87,20 @@ void structure_test() {
         printf("FAILED TEST 2\n");
     }
 
-    infile = fopen("tests/structure_test3.portugol", "r");
+    fclose(yyin);
 
-    if (!infile) {
+    yyin = fopen("tests/structure_test3.portugol", "r");
+
+    if (!yyin) {
         printf("FileError: Could not find input file");
         exit(1);
     }
 
-    yyin = infile;
     do {
         retv = yyparse();
     } while (!feof(yyin));
 
-    if (retv == 1) {
+    if (retv == 0) {
         passed++;
     }
     else {
@@ -107,19 +108,20 @@ void structure_test() {
         printf("FAILED TEST 3\n");
     }
 
-    infile = fopen("tests/structure_test4.portugol", "r");
+    fclose(yyin);
 
-    if (!infile) {
+    yyin = fopen("tests/structure_test4.portugol", "r");
+
+    if (!yyin) {
         printf("FileError: Could not find input file");
         exit(1);
     }
 
-    yyin = infile;
     do {
         retv = yyparse();
     } while (!feof(yyin));
 
-    if (retv == 1) {
+    if (retv == 0) {
         passed++;
     }
     else {
@@ -127,19 +129,20 @@ void structure_test() {
         printf("FAILED TEST 4\n");
     }
 
-    infile = fopen("tests/structure_test5.portugol", "r");
+    fclose(yyin);
 
-    if (!infile) {
+    yyin = fopen("tests/structure_test5.portugol", "r");
+
+    if (!yyin) {
         printf("FileError: Could not find input file");
         exit(1);
     }
 
-    yyin = infile;
     do {
         retv = yyparse();
     } while (!feof(yyin));
 
-    if (retv == 1) {
+    if (retv == 0) {
         passed++;
     }
     else {
@@ -147,11 +150,155 @@ void structure_test() {
         printf("FAILED TEST 5\n");
     }
 
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
+void variable_tests() {
+
+    printf("BEGINNING VARIABLE DECLARATION PARSER TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+
+    yyin = fopen("tests/variable_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+
+    yyin = fopen("tests/variable_test2.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 2\n");
+    }
+
+    fclose(yyin);
+
+    yyin = fopen("tests/variable_test3.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 3\n");
+    }
+
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
+void math_expression_tests() {
+    printf("BEGINNING MATH EXPRESSION PARSER TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+
+    yyin = fopen("tests/math_expression_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+
+    yyin = fopen("tests/math_expression_test2.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 2\n");
+    }
+
+    fclose(yyin);
+
+    yyin = fopen("tests/math_expression_test3.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 3\n");
+    }
+
+    fclose(yyin);
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
 int main() {
     token_tests();
-    structure_test();
+    structure_tests();
+    variable_tests();
+    math_expression_tests();
     exit(EXIT_SUCCESS);
 }
