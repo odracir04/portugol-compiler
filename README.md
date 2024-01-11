@@ -14,13 +14,7 @@
 - Code optimization
 - Final machine code generation
 
-## Instructions to generate the compiler
+## Instructions to generate and use the compiler
 
-To generate the compiler simply run the following commands:
-
-```
-flex lexer.lex
-bison -d parser.y
-gcc lex.yy.c parser.tab.c -o compiler
-```
-These commands can also be executed by running the```build.sh``` file.
+To generate the compiler simply run ```build.sh``` file.
+The compiler also comes with a test suite to assess its current status. The tests can be run by executing the ```test.sh``` file.
