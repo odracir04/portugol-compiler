@@ -3,6 +3,6 @@ algoritmo kingcrimson
 var red: real
 
 inicio
-red <- 2.1 + (23 + 3.14) / 42 * 1.602
+red <- 2.1 + (23 + 3.14) / 42 * 1.602 ^ 2 * 15 ^ 2 ^ 3 - -3
 
 fimalgoritmo

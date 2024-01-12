@@ -4,19 +4,22 @@
 extern FILE* yyin;
 extern int yyparse();
 extern int yylex();
+extern int yylineno;
 
 int main(int argc, char** argv) {
-    FILE* file = fopen(argv[1], "r");
+    int retv;
+    yyin = fopen(argv[1], "r");
 
-    if (!file) {
+    if (!yyin) {
         printf("FileError: Could not find file");
         exit(1);
     }
 
-    yyin = file;
-
     do {
-        yyparse();
+        retv = yyparse();
     } while (!feof(yyin));
+
+    printf(retv == 0 ? "COMPILATION SUCCESS\n" : "COMPILATION FAILURE\n");
+
     exit(0);
 }
