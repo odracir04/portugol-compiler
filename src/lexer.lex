@@ -54,6 +54,7 @@ int syntax_error();
 [a-zA-Z][a-zA-Z0-9]* return VAR_NAME;
 [0-9]+"."[0-9]+ return DOUBLE_LIT;
 "-"?[0-9]+ return INT_LIT;
+"//"[^\n]*"\n" ;
 [ \t] ;
 . syntax_error();
 %%
