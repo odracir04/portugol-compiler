@@ -429,6 +429,34 @@ void write_tests() {
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
+void for_tests() {
+
+    printf("BEGINNING FOR STATEMENT TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+    yyin = fopen("tests/for_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
 int main(int argc, char** argv) {
     token_tests();
     structure_tests();
@@ -438,5 +466,6 @@ int main(int argc, char** argv) {
     switch_case_tests();
     read_tests();
     write_tests();
+    for_tests();
     exit(EXIT_SUCCESS);
 }

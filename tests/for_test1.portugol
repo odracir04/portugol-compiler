@@ -1,0 +1,22 @@
+algoritmo CalculaMedia
+var nota1, nota2, nota3, media: real
+
+inicio
+
+   para sus de 1 ate 10 passo 2 faca
+   escreva("Digite a nota 1: ")
+   leia(nota1)
+
+   escreva("Digite a nota 2: ")
+   leia(nota2)
+
+   escreva("Digite a nota 3: ")
+   leia(nota3)
+
+   // COMMENTS ARE NOW SUPPORTED!
+   media <- (nota1 + nota2 + nota3) / 3
+
+   escreva("A média é: ", media)
+   fimpara
+
+fimalgoritmo
