@@ -40,6 +40,7 @@ int syntax_error();
 "fimpara" return ENDFOR;
 "enquanto" return WHILE;
 "fimenquanto" return ENDWHILE;
+"repita" return DOWHILE;
 \n return NEWLINE;
 ":" return COLON;
 "," return COMMA;
