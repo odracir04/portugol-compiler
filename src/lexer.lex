@@ -27,6 +27,7 @@ int syntax_error();
 "fimescolha" return ENDSWITCH;
 "escreva" return WRITE;
 "escreval" return WRITE_LINE;
+"leia" return READ;
 "nao" return NOT;
 "e" return AND;
 "ou" return OR;

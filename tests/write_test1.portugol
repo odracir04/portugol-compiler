@@ -1,0 +1,13 @@
+algoritmo escreverrr
+
+inicio
+
+escreva("sus")
+
+escreval(a, b, c)
+
+
+
+escreva(a, "antonio", b, "braquiossauro")
+
+fimalgoritmo
