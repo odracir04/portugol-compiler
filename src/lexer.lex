@@ -41,6 +41,7 @@ int syntax_error();
 "enquanto" return WHILE;
 "fimenquanto" return ENDWHILE;
 "repita" return DOWHILE;
+"interrompa" return BREAK;
 \n return NEWLINE;
 ":" return COLON;
 "," return COMMA;
