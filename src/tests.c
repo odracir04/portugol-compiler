@@ -373,6 +373,62 @@ void switch_case_tests() {
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
+void read_tests() {
+
+    printf("BEGINNING READ TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+    yyin = fopen("tests/read_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
+void write_tests() {
+
+    printf("BEGINNING WRITE TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+    yyin = fopen("tests/write_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
 int main(int argc, char** argv) {
     token_tests();
     structure_tests();
@@ -380,5 +436,7 @@ int main(int argc, char** argv) {
     math_expression_tests();
     if_else_tests();
     switch_case_tests();
+    read_tests();
+    write_tests();
     exit(EXIT_SUCCESS);
 }

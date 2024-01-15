@@ -1,0 +1,11 @@
+algoritmo leiturasahah
+
+inicio
+
+leia(x)
+
+leia(x, y, z)
+
+
+
+fimalgoritmo
