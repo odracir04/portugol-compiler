@@ -1,0 +1,17 @@
+algoritmo acid
+
+inicio
+se name = "antonio"
+sus <- 14
+senao
+psd <- VERDADEIRO
+fimse
+
+se 12 <= 21
+check <- check
+se VERDADEIRO <= 12 * 13 / (16 % 0) - 15
+statement <- "afrogus"
+fimse
+fimse
+
+fimalgoritmo

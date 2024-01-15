@@ -19,9 +19,10 @@ void token_tests() {
 
     int passed = 0, failed = 0;
     int res[] = {INICIO, ALGORITMO, VAR, FIMALGORITMO, BOOL_LIT, BOOL_LIT, TYPE, TYPE,
-    TYPE, TYPE, NEWLINE, COLON, COMMA, ARROW, DOUBLE_QUOTE,
-        PLUS, MINUS, TIMES, DIVIDE, OPEN_CURLY, CLOSE_CURLY, NEWLINE,
-        STRING_LIT, INT_LIT, DOUBLE_LIT, NEWLINE};
+    TYPE, TYPE, IF, ELSE, ENDIF, NEWLINE, COLON, COMMA, ARROW,
+        PLUS, MINUS, TIMES, DIVIDE, OPEN_CURLY, CLOSE_CURLY, MODULO, POWER,
+        GREATER_EQUALS, EQUALS, LESS_EQUALS, LESS_THAN, GREATER_THAN, DIFFERENT, NEWLINE,
+        VAR_NAME, STRING_LIT, INT_LIT, DOUBLE_LIT, NEWLINE};
 
     int retv = yylex(), i = 0;
     while (1) {
@@ -295,10 +296,68 @@ void math_expression_tests() {
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
-int main() {
+void if_else_tests() {
+    printf("BEGINNING IF ELSE CONDITIONAL TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+
+    yyin = fopen("tests/if_else_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
+void switch_case_tests() {
+
+    printf("BEGINNING SWITCH CASE CONDITIONAL TESTS...\n");
+
+    int passed = 0, failed = 0, retv;
+    yyin = fopen("tests/switch_case_test1.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 1\n");
+    }
+
+    fclose(yyin);
+    printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
+}
+
+int main(int argc, char** argv) {
     token_tests();
     structure_tests();
     variable_tests();
     math_expression_tests();
+    if_else_tests();
+    switch_case_tests();
     exit(EXIT_SUCCESS);
 }
