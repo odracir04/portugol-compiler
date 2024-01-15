@@ -38,6 +38,8 @@ int syntax_error();
 "passo" return STEP;
 "faca" return DO;
 "fimpara" return ENDFOR;
+"enquanto" return WHILE;
+"fimenquanto" return ENDWHILE;
 \n return NEWLINE;
 ":" return COLON;
 "," return COMMA;
