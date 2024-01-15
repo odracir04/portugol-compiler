@@ -25,6 +25,8 @@ int syntax_error();
 "caso" return CASE;
 "outrocaso" return DEFAULT;
 "fimescolha" return ENDSWITCH;
+"escreva" return WRITE;
+"escreval" return WRITE_LINE;
 "nao" return NOT;
 "e" return AND;
 "ou" return OR;
