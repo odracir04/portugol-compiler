@@ -1,0 +1,13 @@
+algoritmo testesss
+
+inicio
+
+se nao antonio
+check <- sus
+fimse
+
+se antonio e 12 < 13 ou 15 = 30 / 2 xou (12 - abs) >= "sus" e true
+check <- VERDADEIRO
+fimse
+
+fimalgoritmo

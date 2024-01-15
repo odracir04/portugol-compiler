@@ -321,6 +321,27 @@ void if_else_tests() {
     }
 
     fclose(yyin);
+
+    yyin = fopen("tests/if_else_test2.portugol", "r");
+
+    if (!yyin) {
+        printf("FileError: Could not find input file");
+        exit(1);
+    }
+
+    do {
+        retv = yyparse();
+    } while (!feof(yyin));
+
+    if (retv == 0) {
+        passed++;
+    }
+    else {
+        failed++;
+        printf("FAILED TEST 2\n");
+    }
+
+    fclose(yyin);
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
