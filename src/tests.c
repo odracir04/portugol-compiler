@@ -19,10 +19,10 @@ void token_tests() {
 
     int passed = 0, failed = 0;
     int res[] = {INICIO, ALGORITMO, VAR, FIMALGORITMO, BOOL_LIT, BOOL_LIT, TYPE, TYPE,
-    TYPE, TYPE, IF, ELSE, ENDIF, NEWLINE, COLON, COMMA, ARROW, DOUBLE_QUOTE,
+    TYPE, TYPE, IF, ELSE, ENDIF, NEWLINE, COLON, COMMA, ARROW,
         PLUS, MINUS, TIMES, DIVIDE, OPEN_CURLY, CLOSE_CURLY, MODULO, POWER,
         GREATER_EQUALS, EQUALS, LESS_EQUALS, LESS_THAN, GREATER_THAN, DIFFERENT, NEWLINE,
-        STRING_LIT, INT_LIT, DOUBLE_LIT, NEWLINE};
+        VAR_NAME, STRING_LIT, INT_LIT, DOUBLE_LIT, NEWLINE};
 
     int retv = yylex(), i = 0;
     while (1) {
@@ -352,7 +352,7 @@ void switch_case_tests() {
     printf("\nTESTS PASSED: %d\nTESTS FAILED: %d\n\n", passed, failed);
 }
 
-int main() {
+int main(int argc, char** argv) {
     token_tests();
     structure_tests();
     variable_tests();
