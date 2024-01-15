@@ -1,0 +1,19 @@
+algoritmo switchcaser
+
+inicio
+
+escolha sus
+
+caso "afrogus"
+check <- VERDADEIRO
+
+caso VERDADEIRO, 2, 3.2
+check <- FALSO
+
+outrocaso
+check <- "FEFIFOFUM"
+
+
+fimescolha
+
+fimalgoritmo
