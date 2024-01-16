@@ -42,6 +42,8 @@ int syntax_error();
 "fimenquanto" return ENDWHILE;
 "repita" return DOWHILE;
 "interrompa" return BREAK;
+"procedimento" return PROCEDURE;
+"fimprocedimento" return ENDPROCEDURE;
 \n return NEWLINE;
 ":" return COLON;
 "," return COMMA;
