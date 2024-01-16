@@ -5,11 +5,10 @@
 ## Compiling Stages
 
 ### Implemented
-- None...
-
-### To be added
 - Lexical analyzer using Flex
 - Semantic analyzer using Bison
+
+### To be added
 - Intermediate code generation to Assembly Language
 - Code optimization
 - Final machine code generation
