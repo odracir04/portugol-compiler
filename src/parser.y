@@ -81,7 +81,7 @@ int yyerror();
 
 %token RETURN
 
-%left POWER
+%right POWER
 %left MODULO
 %left TIMES
 %left DIVIDE
