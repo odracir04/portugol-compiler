@@ -9,7 +9,7 @@
 - Semantic analyzer using Bison
 
 ### To be added
-- Intermediate code generation to Assembly Language
+- Intermediate code generation using LLVM
 - Code optimization
 - Final machine code generation
 
