@@ -1,6 +1,0 @@
-algoritmo porcupinetree
-
-inicio
-check <- -2 + 3 * (2 ^ 20) - 4 % 15
-
-fimalgoritmo

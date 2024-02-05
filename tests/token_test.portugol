@@ -1,3 +1,0 @@
-inicio algoritmo var fimalgoritmo VERDADEIRO FALSO real logico inteiro caractere se senao fimse
-: , <- + - * / ( ) % ^ >= = <= < > <>
-string "string_lit" 42 42.42

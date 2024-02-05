@@ -1,0 +1,26 @@
+algoritmo programasimples
+    // Declaração de variáveis
+    var nota1, nota2, media: real
+
+inicio
+    // Início do programa
+    escreva("Digite a primeira nota: ")
+    leia(nota1)
+
+    escreva("Digite a segunda nota: ")
+    leia(nota2)
+
+    // Processamento
+    media <- (nota1 + nota2) / 2
+
+    // Saída de dados
+    escreva("A média das notas é: ", media)
+
+    // Verificação de aprovação
+    se media >= 7 entao
+        escreva("Aprovado!")
+    senao
+        escreva("Reprovado!")
+    fimse
+
+fimalgoritmo
