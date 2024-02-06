@@ -1,0 +1,18 @@
+algoritmo programa_repeticao
+    // Declaração de variáveis
+    var contador, limite: inteiro
+
+inicio
+    // Início do programa
+    escreva("Digite um número limite: ")
+    leia(limite)
+
+    // Loop de contagem
+    para contador de 1 ate limite faca
+        escreva(contador, " ")
+    fimpara
+
+    // Saída de dados
+    escreva("Fim da contagem!")
+
+fimalgoritmo

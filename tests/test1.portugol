@@ -1,0 +1,19 @@
+algoritmo programa_basico
+    // Declaração de variáveis
+    var numero1, numero2, soma: inteiro
+
+inicio
+    // Início do programa
+    escreva("Digite o primeiro número: ")
+    leia(numero1)
+
+    escreva("Digite o segundo número: ")
+    leia(numero2)
+
+    // Processamento
+    soma <- numero1 + numero2
+
+    // Saída de dados
+    escreva("A soma dos números é: ", soma)
+
+fimalgoritmo

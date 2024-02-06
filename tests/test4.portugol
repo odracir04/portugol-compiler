@@ -1,0 +1,37 @@
+algoritmo programa_complexo
+    // Declaração de variáveis
+    var contador, limite, soma: inteiro
+
+    // Definição de procedimento
+    procedimento chama_procedimento(valor: inteiro)
+    var resultado: inteiro
+
+    inicio
+    // Processamento no procedimento
+    resultado <- valor * 2
+
+    // Saída de dados no procedimento
+    escreva("O dobro do valor passado é: ", resultado)
+
+    fimprocedimento
+
+inicio
+    // Início do programa
+    escreva("Digite o limite para a soma: ")
+    leia(limite)
+
+    // Inicialização da variável de soma
+    soma <- 0
+
+    // Loop para somar números até o limite
+    para contador de 1 ate limite faca
+        soma <- soma + contador
+    fimpara
+
+    // Saída de dados
+    escreva("A soma dos números de 1 até ", limite, " é: ", soma)
+
+    // Chamada de procedimento
+    chama_procedimento(limite)
+
+fimalgoritmo
