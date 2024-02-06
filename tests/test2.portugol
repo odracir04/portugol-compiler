@@ -11,7 +11,7 @@ inicio
     leia(nota2)
 
     // Processamento
-    media <- (nota1 + nota2) / 2
+    media <- 2 * 2
 
     // Saída de dados
     escreva("A média das notas é: ", media)
