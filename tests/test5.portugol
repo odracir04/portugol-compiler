@@ -1,0 +1,37 @@
+algoritmo programa_avancado
+    // Declaração de variáveis
+    var numero, resultado, contador: inteiro
+
+// Definição de função
+funcao calcular_quadrado(valor: inteiro): inteiro
+    var quadrado: inteiro
+    inicio
+    quadrado <- valor * valor
+    retorne quadrado
+
+fimfuncao
+
+inicio
+    // Início do programa
+    escreva("Digite um número: ")
+    leia(numero)
+
+    // Chamada de função
+    resultado <- calcular_quadrado(numero)
+
+    // Verificação e saída de dados com if-else
+    se resultado > 100 entao
+        escreva("O quadrado do número é maior que 100.")
+    senao
+        escreva("O quadrado do número é ", resultado)
+    fimse
+
+    // Loop while para contar até o resultado
+    contador <- 1
+
+    enquanto contador <= resultado faca
+        escreva(contador, " ")
+        contador <- contador + 1
+    fimenquanto
+
+fimalgoritmo

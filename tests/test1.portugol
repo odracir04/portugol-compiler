@@ -1,4 +1,4 @@
-algoritmo programabasico
+algoritmo programa_basico
     // Declaração de variáveis
     var numero1, numero2, soma: inteiro
 

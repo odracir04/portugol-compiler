@@ -1,4 +1,4 @@
-algoritmo programarepeticao
+algoritmo programa_repeticao
     // Declaração de variáveis
     var contador, limite: inteiro
 

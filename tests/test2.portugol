@@ -1,4 +1,4 @@
-algoritmo programasimples
+algoritmo programa_simples
     // Declaração de variáveis
     var nota1, nota2, media: real
 

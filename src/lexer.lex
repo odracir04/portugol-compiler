@@ -67,7 +67,7 @@ int syntax_error();
 ">" return GREATER_THAN;
 "=" return EQUALS;
 "\""[^\"]*"\"" return STRING_LIT;
-[a-zA-Z][a-zA-Z0-9]* return VAR_NAME;
+[a-zA-Z_][a-zA-Z0-9_]* return VAR_NAME;
 [0-9]+"."[0-9]+ return DOUBLE_LIT;
 "-"?[0-9]+ return INT_LIT;
 "//"[^\n]*"\n" ;
