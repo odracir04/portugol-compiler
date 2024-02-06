@@ -1,4 +1,3 @@
-#include "../lex.yy.c"
 #include <stdio.h>
 #include <stdlib.h>
 

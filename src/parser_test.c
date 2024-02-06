@@ -4,7 +4,6 @@
 extern FILE* yyin;
 extern int yyparse();
 extern int yylex();
-extern int yylineno;
 
 int main(int argc, char** argv) {
     int retv;
@@ -19,7 +18,7 @@ int main(int argc, char** argv) {
         retv = yyparse();
     } while (!feof(yyin));
 
-    printf(retv == 0 ? "COMPILATION SUCCESS\n" : "COMPILATION FAILURE\n");
+    printf(retv == 0 ? "TEST PASSED\n" : "TEST FAILED\n");
 
     exit(0);
 }

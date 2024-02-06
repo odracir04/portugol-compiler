@@ -19,6 +19,7 @@ int syntax_error();
 "inteiro" return TYPE;
 "caractere" return TYPE;
 "se" return IF;
+"entao" return THEN;
 "senao" return ELSE;
 "fimse" return ENDIF;
 "escolha" return SWITCH;
