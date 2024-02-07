@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 typedef enum {
-    TOKEN, INT, STRING, DOUBLE, BOOL
+    TOKEN, INT, STRING, DOUBLE, BOOL, KEYWORD
 } NodeType;
 
 typedef union NodeValue {

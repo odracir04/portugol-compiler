@@ -14,7 +14,7 @@ ASTNode* createNode(NodeType type, NodeValue value, ASTNode* left, ASTNode* righ
     node->left = left;
     node->right = right;
 
-    printf("Node was created!\n");
+    printf("Node was created with value %s!\n", node->value.stringValue);
     return node;
 }
 
