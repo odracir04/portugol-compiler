@@ -7,7 +7,7 @@ extern int yyparse();
 extern int yylex();
 extern int yylineno;
 
-ASTNode* createTokenNode(NodeType type, NodeValue value, ASTNode* left, ASTNode* right) {
+ASTNode* createNode(NodeType type, NodeValue value, ASTNode* left, ASTNode* right) {
     ASTNode* node = (ASTNode*)malloc(sizeof(ASTNode));
     node->type = type;
     node->value = value;

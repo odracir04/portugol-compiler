@@ -21,6 +21,6 @@ typedef struct ASTNode {
     struct ASTNode* right;
 } ASTNode;
 
-ASTNode* createTokenNode(NodeType type, NodeValue value, ASTNode* left, ASTNode* right);
+ASTNode* createNode(NodeType type, NodeValue value, ASTNode* left, ASTNode* right);
 
 #endif //PORTUGOL_COMPILER_COMPILER_H
