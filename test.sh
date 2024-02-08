@@ -11,7 +11,7 @@ for file in ./tests/*; do
     fi
 done    
 
-gcc -Wall lex.yy.c src/parser_test.c parser.tab.c -o parser_test_suite
+gcc -Wall lex.yy.c parser.tab.c src/compiler.c -o parser_test_suite
 
 echo "INITIATING PARSER TESTS.."
 for file in ./tests/*; do
