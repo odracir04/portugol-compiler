@@ -97,6 +97,7 @@ int yyerror();
 
 %union {
     struct ASTNode* node;
+    char* string;
 }
 
 %type <node> start ALGORITMO_ FIMALGORITMO_ INICIO_ VAR_ TYPE_ IF_ THEN_ ELSE_ ENDIF_
@@ -140,7 +141,7 @@ int yyerror();
 %type <node> FUNCTION_CALL FUNCTION_CALL_BEGIN FUNCTION_CALL_END MULTI_PARAMS
 %type <node> EXTRA_CALL_PARAMS EXTRA_CALL_PARAM
 
-
+%type <string> VAR_NAME STRING_LIT
 %%
 start: PROGRAM_HEADER PROGRAM_BODY { $$ = createNode(TOKEN, (NodeValue) "START", $1, $2); };
 
