@@ -2,4 +2,4 @@
 
 flex src/lexer.lex
 bison -d -Wcounterexamples src/parser.y
-gcc -Wall lex.yy.c parser.tab.c src/compiler.c -o compiler
+clang -o compiler parser.tab.c lex.yy.c src/compiler.c `llvm-config --libs core`
