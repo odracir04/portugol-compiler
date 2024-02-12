@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <llvm-c/Core.h>
+#include <llvm-c/BitWriter.h>
 #include "compiler.h"
 
 extern FILE* yyin;
@@ -109,7 +110,7 @@ void startLLVM() {
 }
 
 void endLLVM() {
-    LLVMDumpModule(module);
+    LLVMWriteBitcodeToFile(module, "module.bc");
     LLVMDisposeModule(module);
     LLVMContextDispose(context);
 }
