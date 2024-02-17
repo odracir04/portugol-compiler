@@ -11,7 +11,7 @@ for file in ./tests/*; do
     fi
 done    
 
-gcc -Wall lex.yy.c parser.tab.c src/compiler.c -o parser_test_suite
+clang -o parser_test_suite parser.tab.c lex.yy.c src/compiler.c `llvm-config --libs core`
 
 echo "INITIATING PARSER TESTS.."
 for file in ./tests/*; do
