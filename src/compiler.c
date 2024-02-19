@@ -53,6 +53,7 @@ void parseFile(char* filename) {
 void programNameLLVM(ASTNode* node) {
     context = LLVMContextCreate();
     module = LLVMModuleCreateWithName(node->right->value.stringValue);
+    free(node->right->value.stringValue);
 }
 
 void programHeaderLLVM(ASTNode* node) {
@@ -72,7 +73,7 @@ void algorithmHeaderLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef
         LLVMValueRef mainFunction = LLVMAddFunction(module, "main", mainFunctionType);
         *block = LLVMAppendBasicBlockInContext(context, mainFunction, "entry");
         *builder = LLVMCreateBuilderInContext(context);
-        
+
         LLVMTypeRef args[1];
         args[0] = LLVMPointerType(LLVMInt8Type(), 0);
         put = LLVMFunctionType(LLVMInt32Type(), args, 1, 0);
@@ -88,6 +89,7 @@ void algorithmEndLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* b
         LLVMPositionBuilderAtEnd(*builder, *block);
         LLVMValueRef returnValue = LLVMConstInt(*returnType, 0, 0);
         LLVMBuildRet(*builder, returnValue);
+        LLVMDisposeBuilder(*builder);
     }
 }
 
@@ -98,9 +100,7 @@ bool writeBeginLLVM(ASTNode* node) {
 char* writeParamsLLVM(ASTNode* node) {
     if (node->right == NULL) {
         if (node->left->type == STRING) {
-            char* string = malloc(sizeof(node->left->value.stringValue));
-            strcpy(string, node->left->value.stringValue);
-            return string;
+            return node->left->value.stringValue;
         }
     }
     return "";
@@ -113,12 +113,10 @@ char* writeEndLLVM(ASTNode* node) {
 void writeStatementLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder) {
     bool line = writeBeginLLVM(node->left);
     char* string = writeEndLLVM(node->right);
-    if (line) {
-        strcat(string, "\n");
-    }
     LLVMPositionBuilderAtEnd(*builder, *block);
     LLVMValueRef printStr = LLVMBuildGlobalStringPtr(*builder, string, "string");
     LLVMBuildCall2(*builder, put, putsFunc, &printStr, 1, "");
+    free(string);
 }
 
 void statementLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder) {

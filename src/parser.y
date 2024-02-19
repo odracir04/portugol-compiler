@@ -6,6 +6,7 @@
 int yylex();
 int yyparse();
 int yyerror();
+
 %}
 
 %start start
@@ -142,6 +143,7 @@ int yyerror();
 %type <node> EXTRA_CALL_PARAMS EXTRA_CALL_PARAM
 
 %type <string> VAR_NAME STRING_LIT
+
 %%
 start: PROGRAM_HEADER PROGRAM_BODY { $$ = createNode(TOKEN, (NodeValue) "START", $1, $2); };
 
@@ -357,7 +359,7 @@ XOR_: XOR {};
 COLON_: COLON {};
 NEWLINE_: NEWLINE { $$ = createNode(KEYWORD, (NodeValue) "\n", NULL, NULL); };
 COMMA_: COMMA {};
-VAR_NAME_: VAR_NAME { $$ = createNode(KEYWORD, (NodeValue) "var_name", NULL, NULL);};
+VAR_NAME_: VAR_NAME { $$ = createNode(KEYWORD, (NodeValue) $1, NULL, NULL); };
 ARROW_: ARROW {};
 PLUS_: PLUS {};
 MINUS_: MINUS {};
@@ -370,7 +372,7 @@ POWER_: POWER {};
 BOOL_LIT_: BOOL_LIT {};
 DOUBLE_LIT_: DOUBLE_LIT {};
 INT_LIT_: INT_LIT {};
-STRING_LIT_: STRING_LIT { $$ = createNode(STRING, (NodeValue) "test_string", NULL, NULL); };
+STRING_LIT_: STRING_LIT { $$ = createNode(STRING, (NodeValue) $1, NULL, NULL); };
 EQUALS_: EQUALS {};
 GREATER_EQUALS_: GREATER_EQUALS {};
 LESS_EQUALS_: LESS_EQUALS {};
