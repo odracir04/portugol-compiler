@@ -271,7 +271,7 @@ WRITE_PARAMS: VAR_NAME_  { $$ = createNode(TOKEN, (NodeValue) "WRITE_PARAMS", $1
             | STRING_LIT_ EXTRA_PARAMS { $$ = createNode(TOKEN, (NodeValue) "WRITE_PARAMS", $1, $2); };
 EXTRA_PARAMS: EXTRA_PARAM  { $$ = createNode(TOKEN, (NodeValue) "EXTRA_PARAMS", $1, NULL); }
             | EXTRA_PARAM EXTRA_PARAMS { $$ = createNode(TOKEN, (NodeValue) "EXTRA_PARAMS", $1, $2); };
-EXTRA_PARAM: COMMA_ STRING_LIT_ { $$ = createNode(TOKEN, (NodeValue) "EXTRA_PARAM", $1, $2); };
+EXTRA_PARAM: COMMA_ STRING_LIT_ { $$ = createNode(TOKEN, (NodeValue) "EXTRA_PARAM", $1, $2); }
             | COMMA_ VAR_NAME_ { $$ = createNode(TOKEN, (NodeValue) "EXTRA_PARAM", $1, $2); };
 
 READ_STATEMENT: READ_BEGIN READ_END;

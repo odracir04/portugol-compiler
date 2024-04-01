@@ -49,6 +49,7 @@ bool parseFile(char* filename) {
     return retv == 0;
 }
 
+#ifndef PTEST
 void startLLVM() {
     programHeaderLLVM(rootNode->left);
     programBodyLLVM(rootNode->right);
@@ -62,9 +63,11 @@ void endLLVM() {
     free(rootNode);
 }
 
+
 int main(int argc, char** argv) {
     if (!parseFile(argv[1])) return 1;
     startLLVM();
     endLLVM();
     exit(0);
 }
+#endif
