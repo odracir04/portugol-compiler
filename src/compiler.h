@@ -2,6 +2,8 @@
 #define PORTUGOL_COMPILER_COMPILER_H
 
 #include <stdbool.h>
+#include <llvm-c/Core.h>
+#include <llvm-c/BitWriter.h>
 
 typedef enum {
     TOKEN, INT, STRING, DOUBLE, BOOL, KEYWORD

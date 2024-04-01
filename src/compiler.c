@@ -2,15 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <llvm-c/Core.h>
-#include <stdbool.h>
 #include <llvm-c/BitWriter.h>
 #include "compiler.h"
+#include "structure.h"
 
 extern FILE* yyin;
 extern int yyparse();
 extern int yylex();
 extern int yylineno;
-
 
 ASTNode* rootNode;
 LLVMContextRef context;
@@ -33,7 +32,7 @@ ASTNode* createNode(NodeType type, NodeValue value, ASTNode* left, ASTNode* righ
 }
 
 
-void parseFile(char* filename) {
+bool parseFile(char* filename) {
     int retv;
     yyin = fopen(filename, "r");
 
@@ -47,114 +46,10 @@ void parseFile(char* filename) {
     } while (!feof(yyin));
 
     printf(retv == 0 ? "COMPILATION SUCCESS\n" : "COMPILATION FAILURE\n");
+    return retv == 0;
 }
 
-
-void programNameLLVM(ASTNode* node) {
-    context = LLVMContextCreate();
-    module = LLVMModuleCreateWithName(node->right->value.stringValue);
-    free(node->right->value.stringValue);
-}
-
-void programHeaderLLVM(ASTNode* node) {
-    if (strcmp(node->left->value.stringValue, "PROGRAM_HEADER") == 0) {
-        programHeaderLLVM(node->left);
-    }
-    else {
-        programNameLLVM(node->left);
-    }
-}
-
-void algorithmHeaderLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder, LLVMTypeRef* returnType) {
-    if (strcmp(node->left->value.stringValue, "INICIO")) {
-        *returnType = LLVMInt32TypeInContext(context);
-        LLVMTypeRef paramTypes[] = {};
-        mainFunctionType = LLVMFunctionType(*returnType, paramTypes, 0, 0);
-        LLVMValueRef mainFunction = LLVMAddFunction(module, "main", mainFunctionType);
-        *block = LLVMAppendBasicBlockInContext(context, mainFunction, "entry");
-        *builder = LLVMCreateBuilderInContext(context);
-
-        LLVMTypeRef args[1];
-        args[0] = LLVMPointerType(LLVMInt8Type(), 0);
-        put = LLVMFunctionType(LLVMInt32Type(), args, 1, 0);
-        putsFunc = LLVMAddFunction(module, "puts", put);
-    }
-    else {
-        algorithmHeaderLLVM(node->left, block, builder, returnType);
-    }
-}
-
-void algorithmEndLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder, LLVMTypeRef* returnType) {
-    if (node->right == NULL) {
-        LLVMPositionBuilderAtEnd(*builder, *block);
-        LLVMValueRef returnValue = LLVMConstInt(*returnType, 0, 0);
-        LLVMBuildRet(*builder, returnValue);
-        LLVMDisposeBuilder(*builder);
-    }
-}
-
-bool writeBeginLLVM(ASTNode* node) {
-    return strcmp(node->left->value.stringValue, "escreva");
-}
-
-char* writeParamsLLVM(ASTNode* node) {
-    if (node->right == NULL) {
-        if (node->left->type == STRING) {
-            return node->left->value.stringValue;
-        }
-    }
-    return "";
-}
-
-char* writeEndLLVM(ASTNode* node) {
-    return writeParamsLLVM(node->left);
-}
-
-void writeStatementLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder) {
-    bool line = writeBeginLLVM(node->left);
-    char* string = writeEndLLVM(node->right);
-    LLVMPositionBuilderAtEnd(*builder, *block);
-    LLVMValueRef printStr = LLVMBuildGlobalStringPtr(*builder, string, "string");
-    LLVMBuildCall2(*builder, put, putsFunc, &printStr, 1, "");
-    free(string);
-}
-
-void statementLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder) {
-    if (strcmp(node->left->value.stringValue, "WRITE_STATEMENT") == 0) {
-        writeStatementLLVM(node->left, block, builder);
-    }
-}
-
-void statementListLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder) {
-    statementLLVM(node->left, block, builder);
-    if (node->right != NULL) {
-        statementListLLVM(node->right, block, builder);    
-    }
-}
-
-void algorithmBodyLLVM(ASTNode* node, LLVMBasicBlockRef* block, LLVMBuilderRef* builder, LLVMTypeRef* returnType) {
-    statementListLLVM(node->left,block, builder);
-    algorithmEndLLVM(node->right, block, builder, returnType);
-}
-
-void algorithmLLVM(ASTNode* node) {
-    LLVMBasicBlockRef block;
-    LLVMBuilderRef builder;
-    LLVMTypeRef returnType;
-    algorithmHeaderLLVM(node->left, &block, &builder, &returnType);
-    algorithmBodyLLVM(node->right, &block, &builder, &returnType);
-}
-
-void programBodyLLVM(ASTNode* node) {
-    if (node->right == NULL) {
-        algorithmLLVM(node->left);
-    }
-    else {
-        // functionsAndVariablesLLVM(node->left);
-        algorithmLLVM(node->right);
-    }
-}
-
+#ifndef PTEST
 void startLLVM() {
     programHeaderLLVM(rootNode->left);
     programBodyLLVM(rootNode->right);
@@ -165,11 +60,14 @@ void endLLVM() {
     LLVMDumpModule(module);
     LLVMDisposeModule(module);
     LLVMContextDispose(context);
+    free(rootNode);
 }
 
+
 int main(int argc, char** argv) {
-    parseFile(argv[1]);
+    if (!parseFile(argv[1])) return 1;
     startLLVM();
     endLLVM();
     exit(0);
 }
+#endif

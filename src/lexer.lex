@@ -67,16 +67,20 @@ int syntax_error();
 ">" return GREATER_THAN;
 "=" return EQUALS;
 "\""[^\"]*"\""  {
+#ifndef TEST
     yylval.string = (char*)malloc(sizeof(char) * (strlen(yytext) - 1));
     strncpy(yylval.string, yytext + 1, strlen(yytext) - 2);
     yylval.string[strlen(yytext) - 2] = '\0';
     return STRING_LIT;
-    }
+#endif
+};
 [a-zA-Z_][a-zA-Z0-9_]* {
+#ifndef TEST
     yylval.string = (char*)malloc(sizeof(char) * (strlen(yytext) + 1));
     strcpy(yylval.string, yytext);
     return VAR_NAME;
-}
+#endif
+};
 [0-9]+"."[0-9]+ return DOUBLE_LIT;
 "-"?[0-9]+ return INT_LIT;
 "//"[^\n]*"\n" ;
