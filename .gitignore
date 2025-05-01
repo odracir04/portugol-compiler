@@ -1,9 +1,0 @@
-lex.yy.c
-lexer
-.idea/
-parser
-compiler
-parser.tab.*
-grammar.txt
-test_suite
-test.portugol
